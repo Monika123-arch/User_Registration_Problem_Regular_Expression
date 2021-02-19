@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UserRegisterProblem {
 
 	public static void main(String[] args) {
-                //declare password
+                //Declare password
 		Scanner sc = new Scanner(System.in);
 		String name;
 		System.out.println("enter passward :");
