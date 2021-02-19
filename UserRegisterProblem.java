@@ -15,7 +15,7 @@ public class UserRegisterProblem {
 	public static void mobileno(String name) {
 		//Declare pattern
 		Pattern p = Pattern.compile("^[9][1][\\s][7-9]{1}[0-9]{9}+$");
-               //Pattern p = Pattern.compile("^[.]{1}[a-z]{3,}[@]{1}[.]{1}[.]{1}[a-z]{2,}+$");
+    //Pattern p = Pattern.compile("^[.]{1}[a-z]{3,}[@]{1}[.]{1}[.]{1}[a-z]{2,}+$");
 		Matcher m = p.matcher(name);
 		if(m.find())
 		{
@@ -24,6 +24,7 @@ public class UserRegisterProblem {
 		else
 		{
 			System.out.println("mobile no is invalid");
+
 		}
 		System.out.println("length :"+name.length());
 	}
