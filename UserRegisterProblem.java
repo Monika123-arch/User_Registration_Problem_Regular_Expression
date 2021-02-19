@@ -5,24 +5,25 @@ import java.util.Scanner;
 public class UserRegisterProblem {
 
 	public static void main(String[] args) {
-		//Declare last name
+                //Declare password
 		Scanner sc = new Scanner(System.in);
 		String name;
-		System.out.println("enter last name :");
+		System.out.println("enter passward :");
 		name = sc.nextLine();
-		lastname(name);
+		passward(name);
 	}
-	public static void lastname(String name) {
-		//Declare pattern
-		Pattern p = Pattern.compile("^[A-Z]{1}[A-Za-z]{2,}+$");
-		Matcher m = p.matcher(name);
+	public static void passward(String name) {
+                 //Declare pattern
+                //Pattern p = Pattern.compile("^[a-zA-Z0-9]{3}+(.{1}[a-zA-Z0-9]{3}+)*@{1}[a-zA-Z0-9]{2}+(.{1}[a-zA-Z0-9]{2}+)*(.{1}[a-zA-Z0-9]{2}+)$");
+		Pattern p = Pattern.compile("^[a-zA-Z0-9]{8,}$");
+                Matcher m = p.matcher(name);
 		if(m.find())
 		{
-			System.out.println("lastname is valid");
+			System.out.println("passward is valid");
 		}
 		else
 		{
-			System.out.println("lastname is invalid");
+			System.out.println("passward is invalid");
 		}
 		System.out.println("length :"+name.length());
 	}
