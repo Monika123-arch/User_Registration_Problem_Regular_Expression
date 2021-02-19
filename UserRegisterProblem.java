@@ -6,7 +6,7 @@ public class UserRegisterProblem {
 
 	public static void main(String[] args) {
                 //Declare password
-    Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 		String name;
 		System.out.println("enter passward :");
 		name = sc.nextLine();
