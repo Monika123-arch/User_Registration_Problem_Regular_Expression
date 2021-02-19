@@ -5,25 +5,25 @@ import java.util.Scanner;
 public class UserRegisterProblem {
 
 	public static void main(String[] args) {
-		//declare mobile number
-		Scanner sc = new Scanner(System.in);
+                //Declare password
+    Scanner sc = new Scanner(System.in);
 		String name;
-		System.out.println("enter mobile number :");
+		System.out.println("enter passward :");
 		name = sc.nextLine();
-		mobileno(name);
+		passward(name);
 	}
-	public static void mobileno(String name) {
-		//Declare pattern
-		Pattern p = Pattern.compile("^[9][1][\\s][7-9]{1}[0-9]{9}+$");
-    //Pattern p = Pattern.compile("^[.]{1}[a-z]{3,}[@]{1}[.]{1}[.]{1}[a-z]{2,}+$");
-		Matcher m = p.matcher(name);
+	public static void passward(String name) {
+                 //Declare pattern
+                //Pattern p = Pattern.compile("^[a-zA-Z0-9]{3}+(.{1}[a-zA-Z0-9]{3}+)*@{1}[a-zA-Z0-9]{2}+(.{1}[a-zA-Z0-9]{2}+)*(.{1}[a-zA-Z0-9]{2}+)$");
+		Pattern p = Pattern.compile("^[a-zA-Z0-9]{8,}$");
+                Matcher m = p.matcher(name);
 		if(m.find())
 		{
-			System.out.println("mobile no is valid");
+			System.out.println("passward is valid");
 		}
 		else
 		{
-			System.out.println("mobile no is invalid");
+			System.out.println("passward is invalid");
 
 		}
 		System.out.println("length :"+name.length());
