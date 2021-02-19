@@ -5,24 +5,25 @@ import java.util.Scanner;
 public class UserRegisterProblem {
 
 	public static void main(String[] args) {
-		//Declare last name
+		//declare mobile number
 		Scanner sc = new Scanner(System.in);
 		String name;
-		System.out.println("enter last name :");
+		System.out.println("enter mobile number :");
 		name = sc.nextLine();
-		lastname(name);
+		mobileno(name);
 	}
-	public static void lastname(String name) {
+	public static void mobileno(String name) {
 		//Declare pattern
-		Pattern p = Pattern.compile("^[A-Z]{1}[A-Za-z]{2,}+$");
+		Pattern p = Pattern.compile("^[9][1][\\s][7-9]{1}[0-9]{9}+$");
+               //Pattern p = Pattern.compile("^[.]{1}[a-z]{3,}[@]{1}[.]{1}[.]{1}[a-z]{2,}+$");
 		Matcher m = p.matcher(name);
 		if(m.find())
 		{
-			System.out.println("lastname is valid");
+			System.out.println("mobile no is valid");
 		}
 		else
 		{
-			System.out.println("lastname is invalid");
+			System.out.println("mobile no is invalid");
 		}
 		System.out.println("length :"+name.length());
 	}
