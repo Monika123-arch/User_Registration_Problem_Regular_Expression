@@ -6,16 +6,16 @@ public class UserRegisterProblem {
 
 	public static void main(String[] args) {
                 //Declare password
-    Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		String name;
 		System.out.println("enter passward :");
 		name = sc.nextLine();
-		passward(name);
+		passward1(name);
 	}
-	public static void passward(String name) {
-                 //Declare pattern
+	public static void passward1(String name) {
+                //declare pattern
                 //Pattern p = Pattern.compile("^[a-zA-Z0-9]{3}+(.{1}[a-zA-Z0-9]{3}+)*@{1}[a-zA-Z0-9]{2}+(.{1}[a-zA-Z0-9]{2}+)*(.{1}[a-zA-Z0-9]{2}+)$");
-		Pattern p = Pattern.compile("^[a-zA-Z0-9]{8,}$");
+		Pattern p = Pattern.compile("^([A-Z])[a-zA-Z0-9]{8,}$");
                 Matcher m = p.matcher(name);
 		if(m.find())
 		{
@@ -24,7 +24,6 @@ public class UserRegisterProblem {
 		else
 		{
 			System.out.println("passward is invalid");
-
 		}
 		System.out.println("length :"+name.length());
 	}
