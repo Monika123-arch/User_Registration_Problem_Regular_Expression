@@ -8,35 +8,35 @@ public class UserRegtrationTest {
     @Test
     public void nameValid() {
         UserRegistration checkName = new UserRegistration();
-        Boolean mood = checkName.nameValid("Sumit");
+        Boolean mood = checkName.nameValid("monika");
         Assert.assertEquals(true, mood);
     }
     
     @Test
     public void lastValid() {
         UserRegistration checkLastName = new UserRegistration();
-        Boolean mood = checkLastName.nameValid("Rajegore");
+        Boolean mood = checkLastName.nameValid("kale");
         Assert.assertEquals(true, mood);
     }
 
     @Test
     public void emailValid() {
         UserRegistration checkEmail = new UserRegistration();
-        Boolean mood = checkEmail.emailValid("abc.Sumit@bl.co.in");
+        Boolean mood = checkEmail.emailValid("monika.co.in");
         Assert.assertEquals(true, mood);
     }
 
     @Test
     public void phoneValid() {
         UserRegistration checkPhone = new UserRegistration();
-        Boolean mood = checkPhone.phoneValid("91 9822654119");
+        Boolean mood = checkPhone.phoneValid("91 942019845");
         Assert.assertEquals(true, mood);
     }
 
     @Test
     public void passwordValid() {
         UserRegistration checkPassword = new UserRegistration();
-        Boolean mood = checkPassword.passwordValid("ssdSSW53#");
+        Boolean mood = checkPassword.passwordValid("sss#");
         Assert.assertEquals(true, mood);
     }
     
