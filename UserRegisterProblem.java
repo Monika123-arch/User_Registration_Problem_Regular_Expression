@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class UserRegisterProblem {
 
 	public static void main(String[] args) {
-
+                //Declare password
 		Scanner sc = new Scanner(System.in);
 		String name;
 		System.out.println("enter passward :");
@@ -16,6 +16,14 @@ public class UserRegisterProblem {
 
                 //Pattern p = Pattern.compile("^[a-zA-Z0-9]{3}+(.{1}[a-zA-Z0-9]{3}+)*@{1}[a-zA-Z0-9]{2}+(.{1}[a-zA-Z0-9]{2}+)*(.{1}[a-zA-Z0-9]{2}+)$");
 		Pattern p = Pattern.compile("^[\\@\\&\\$\\#\\_\\%\\,\\.](?=.*[A-Z])(?=.*[0-9]).{8,}$");
+
+		passward2(name);
+	}
+	public static void passward2(String name) {
+                 //declare pattern
+                //Pattern p = Pattern.compile("^[a-zA-Z0-9]{3}+(.{1}[a-zA-Z0-9]{3}+)*@{1}[a-zA-Z0-9]{2}+(.{1}[a-zA-Z0-9]{2}+)*(.{1}[a-zA-Z0-9]{2}+)$");
+		Pattern p = Pattern.compile("^([A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$");
+
                 Matcher m = p.matcher(name);
 		if(m.find())
 		{
