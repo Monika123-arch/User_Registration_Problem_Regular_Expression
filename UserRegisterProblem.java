@@ -10,7 +10,6 @@ public class UserRegisterProblem {
 		String name;
 		System.out.println("enter passward :");
 		name = sc.nextLine();
-
 		passward3(name);
 	}
 	public static void passward3(String name) {
