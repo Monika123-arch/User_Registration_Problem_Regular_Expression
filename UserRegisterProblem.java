@@ -1,11 +1,9 @@
 package com.userregistration;
 import java.util.Scanner;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegisterProblem {
-
 
     public boolean nameValid(String name) {
        
@@ -54,7 +52,7 @@ public class UserRegisterProblem {
         Pattern p = Pattern.compile("^[a-z]{3,}([\\.\\+\\-]?[0-9]{3,})?[@][a-z0-9]{1,}[.][a-z]{2,4}[,]?([.][a-z]{2,4}[.]?)?$");
         Matcher m = p.matcher(email);
         return m.find();
-  
-	}
+
+    }
 
 }
