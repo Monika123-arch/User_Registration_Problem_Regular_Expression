@@ -1,172 +1,80 @@
-package com.userregistration;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+package lambda.userregistration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class UserRegtrationTest {
-
-    @Test
-    public void nameValid() throws UserRegistrationTestException {
-
-        UserRegistration checkName = new UserRegistration();
-        try {
-            boolean sname = checkName.nameValid(null);
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);
-            Assert.assertEquals(true, sname);
-        }catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.NullType, e.type);
-        }
-    }
-    
-    @Test
-    public void lastValid() throws UserRegistrationTestException { 
-
-        UserRegistration checkLastName = new UserRegistration();
-        try {
-            boolean lname = checkLastName.lastValid(null);
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);        
-            Assert.assertEquals(true, lname);
-        }catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.NullType, e.type);
-        }
-    }
-
-    @Test
-    public void emailValid() throws UserRegistrationTestException {
-
-        UserRegistration checkEmail = new UserRegistration();
-        try {
-            boolean email = checkEmail.emailValid(null);
-            //boolean email = checkEmail.emailValid("abc.Sumit@bl.co.in");
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);     
-            Assert.assertEquals(true, email);
-        } catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.NullType, e.type);
-        }
-    }
-
-    @Test
-    public void phoneValid() throws UserRegistrationTestException {
-
-        UserRegistration checkPhone = new UserRegistration();
-        try {
-            boolean phone = checkPhone.phoneValid(null);
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);
-            Assert.assertEquals(true, phone);
-        } catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.NullType, e.type);
-        }
-    }
-
-    @Test
-    public void passwordValid() throws UserRegistrationTestException { 
-
-        UserRegistration checkPassword = new UserRegistration();
-        try {
-            boolean password = checkPassword.passwordValid(null);
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);
-            //Boolean mood = checkPassword.passwordValid("ssdSSW53#");
-        	Assert.assertEquals(true, password);
-        } catch (UserRegistrationTestException e) { 
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.NullType, e.type);
-        }
-    }
-    
-    @Test
-    public void nameValidempty() throws UserRegistrationTestException {
-
-        UserRegistration checkName = new UserRegistration();
-        try {
-            boolean sname = checkName.nameValid("Sumit");
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);
-            Assert.assertEquals(true, sname);
-        } catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.EmptyType, e.type);
-        }
-    }
-    
-    @Test
-    public void lastValidempty() throws UserRegistrationTestException { 
-
-        UserRegistration checkLastName = new UserRegistration();
-        try {
-            boolean lname = checkLastName.lastValid("Rajegore");
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);        
-            Assert.assertEquals(true, lname);
-        } catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.EmptyType, e.type);
-        }
-    }
-
-    @Test
-    public void emailValidempty() throws UserRegistrationTestException { 
-
-        UserRegistration checkEmail = new UserRegistration();
-        try {
-            //boolean email = checkEmail.emailValid(null);
-            boolean email = checkEmail.emailValid("abc.Sumit@bl.co.in");
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);     
-            Assert.assertEquals(true, email);
-        } catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.EmptyType, e.type);
-        }
-    }
-
-    @Test
-    public void phoneValidempty() throws UserRegistrationTestException {
-
-        UserRegistration checkPhone = new UserRegistration();
-        try {
-            boolean phone = checkPhone.phoneValid("91 9822654119");
-            @SuppressWarnings("deprecation")
-			ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);
-            Assert.assertEquals(true, phone);
-        } catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.EmptyType, e.type);
-        }
-    }
-
-    @Test
-    public void passwordValidempty() throws UserRegistrationTestException {
-
-        UserRegistration checkPassword = new UserRegistration();
-        try {
-            boolean password = checkPassword.passwordValid("ssdSSW53#");
-            @SuppressWarnings("deprecation")
-	    ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(UserRegistrationTestException.class);
-            //Boolean mood = checkPassword.passwordValid("ssdSSW53#");
-        	Assert.assertEquals(true, password);
-        } catch (UserRegistrationTestException e) {
-
-            Assert.assertEquals(UserRegistrationTestException.ExceptionType.EmptyType, e.type);
-        }
-    }
-    
+@FunctionalInterface
+interface UserValidation{
+	
+    boolean matchPattern(String pattern, String name);
 }
+
+public class UserRegisterProblem{
+	
+    static String namePattern = "^[A-Z][a-zA-Z]{3,}";
+    static String lastPattern = "^[A-Z][a-zA-Z]{3,}";
+    static String emailPattern ="^abc.[a-zA-Z0-9]*@bl[.]co[.][a-z]{2,3}";
+    static String phonePattern ="^[0-9]{2}[: :][0-9]{10}";
+    static String passwordPattern ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{8,}$";
+    UserValidation validate = (String pattern, String name) -> Pattern.matches(pattern, name);
+
+    public boolean nameValidation(String name) throws UserRegistrationTestException {
+    	
+        try {
+            if (name.isEmpty()) throw new UserRegistrationTestException("Entered value is empty",
+            		UserRegistrationTestException.ExceptionType.EmptyType);
+            return validate.matchPattern(namePattern,name);
+        } catch (NullPointerException e) {
+        	
+            throw new UserRegistrationTestException("entered null", UserRegistrationTestException.ExceptionType.NullType);
+        }
+    }
+    
+    public boolean lastnameValidation(String name) throws UserRegistrationTestException {
+    	
+        try {
+            if (name.isEmpty()) throw new UserRegistrationTestException("Entered value is empty",
+            		UserRegistrationTestException.ExceptionType.EmptyType);
+            return validate.matchPattern(lastPattern,name);
+        } catch (NullPointerException e) {
+        	
+            throw new UserRegistrationTestException("entered null", UserRegistrationTestException.ExceptionType.NullType);
+        }
+    }
+
+    public boolean emailValidation(String email) throws UserRegistrationTestException {
+    	
+        try {
+            if (email.isEmpty()) throw new UserRegistrationTestException("Entered value is empty",
+            		UserRegistrationTestException.ExceptionType.EmptyType);
+            return validate.matchPattern(emailPattern,email);
+        } catch (NullPointerException e) {
+        	
+            throw new UserRegistrationTestException("entered null", UserRegistrationTestException.ExceptionType.NullType);
+        }
+    }
+
+    public boolean phoneValidation(String phoneNumber) throws UserRegistrationTestException {
+    	
+        try {
+            if (phoneNumber.isEmpty()) throw new UserRegistrationTestException("Entered value is empty",
+            		UserRegistrationTestException.ExceptionType.EmptyType);
+            return validate.matchPattern(phonePattern,phoneNumber);
+        } catch (NullPointerException e) {
+        	
+            throw new UserRegistrationTestException("entered null", UserRegistrationTestException.ExceptionType.NullType);
+        }
+    }
+
+    public boolean passwordValidation(String password) throws UserRegistrationTestException {
+    	
+        try {
+            if (password.isEmpty()) throw new UserRegistrationTestException("Entered value is empty",
+            		UserRegistrationTestException.ExceptionType.EmptyType);
+            return validate.matchPattern(passwordPattern,password);
+        } catch (NullPointerException e) {
+        	
+            throw new UserRegistrationTestException("entered null", UserRegistrationTestException.ExceptionType.NullType);
+        }
+    }
+}
+
